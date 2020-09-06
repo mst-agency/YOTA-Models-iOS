@@ -17,6 +17,7 @@ public struct Profile: Codable {
     public let availableGigabytes: Accumulator
     public let possibleMinutes: [PossibleValues]
     public let possibleGigabytes: [PossibleValues]
+    public let plannedTariff: PlannedTariff
 
     public init (finblock: Bool,
                  phoneNumber: PhoneNumber,
@@ -26,7 +27,8 @@ public struct Profile: Codable {
                  availableMinutes: Accumulator,
                  availableGigabytes: Accumulator,
                  possibleMinutes: [PossibleValues],
-                 possibleGigabytes: [PossibleValues]) {
+                 possibleGigabytes: [PossibleValues],
+                 plannedTariff: PlannedTariff) {
         self.finblock = finblock
         self.phoneNumber = phoneNumber
         self.options = options
@@ -36,6 +38,7 @@ public struct Profile: Codable {
         self.availableGigabytes = availableGigabytes
         self.possibleMinutes = possibleMinutes
         self.possibleGigabytes = possibleGigabytes
+        self.plannedTariff = plannedTariff
     }
 }
 
@@ -146,5 +149,19 @@ public struct FixValueWithPrice: Codable {
         self.value = value
         self.infinity = infinity
         self.price = price
+    }
+}
+
+public struct PlannedTariff: Codable {
+    public let options: Options
+    public let minutes: FixValueWithPrice
+    public let gigabytes: FixValueWithPrice
+
+    public init (options: Options,
+                 minutes: FixValueWithPrice,
+                 gigabytes: FixValueWithPrice) {
+        self.options = options
+        self.minutes = minutes
+        self.gigabytes = gigabytes
     }
 }
