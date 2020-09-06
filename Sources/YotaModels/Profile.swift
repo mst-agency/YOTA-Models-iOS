@@ -153,14 +153,11 @@ public struct FixValueWithPrice: Codable {
 }
 
 public struct PlannedTariff: Codable {
-    public let options: Options
     public let minutes: FixValueWithPrice
     public let gigabytes: FixValueWithPrice
 
-    public init (options: Options,
-                 minutes: FixValueWithPrice,
+    public init (minutes: FixValueWithPrice,
                  gigabytes: FixValueWithPrice) {
-        self.options = options
         self.minutes = minutes
         self.gigabytes = gigabytes
     }
